@@ -1,4 +1,4 @@
-package com.app.consumer.OpenFiegn;
+package com.app.consumer.HTTPInterface;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -6,14 +6,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("api/feign")
+@RequestMapping("api/http-interface")
 @RequiredArgsConstructor
-public class FeignController {
+public class HTTPInterfaceController {
 
-    private final ProviderFeignClient providerFeignClient;
+    private final ProviderHTTPInterface providerHTTPInterface;
 
     @GetMapping("/instance")
     public String getInstanceInfo() {
-        return providerFeignClient.getInstanceInfo();
+        return providerHTTPInterface.getInstanceInfo();
     }
 }
