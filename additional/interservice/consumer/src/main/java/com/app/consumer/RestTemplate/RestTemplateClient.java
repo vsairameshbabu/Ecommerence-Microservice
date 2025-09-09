@@ -10,7 +10,8 @@ public class RestTemplateClient {
 
     private final RestTemplate restTemplate;
 
-    private static final String PRODUCT_SERVICE_URL = "http://localhost:8081";
+//    private static final String PRODUCT_SERVICE_URL = "http://localhost:8081";
+      private static final String PRODUCT_SERVICE_URL = "http://product";
 
     public String getInstanceInfo() {
         return restTemplate.getForObject(PRODUCT_SERVICE_URL + "/instance-info", String.class);
