@@ -34,7 +34,7 @@ public class ProductService {
     }
 
     public Optional<ProductResponse> fetchProduct(Long id) {
-        return productRepository.findById(id).map(this::mapToProductResponse);
+        return productRepository.findByIdAndActiveTrue(id).map(this::mapToProductResponse);
     }
 
     public List<ProductResponse> fetchAllProducts() {

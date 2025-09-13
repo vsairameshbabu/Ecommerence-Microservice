@@ -1,6 +1,10 @@
 package com.ecommerce.order.service;
 
+import com.ecommerce.order.clients.ProductServiceClient;
+import com.ecommerce.order.clients.UserServiceClient;
 import com.ecommerce.order.dto.CartItemRequest;
+import com.ecommerce.order.dto.ProductResponse;
+import com.ecommerce.order.dto.UserResponse;
 import com.ecommerce.order.models.CartItem;
 import com.ecommerce.order.repository.CartItemRepository;
 import jakarta.transaction.Transactional;
@@ -15,24 +19,22 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CartItemService {
 
-//    private final ProductRepository productRepository;
-//    private final UserRepository userRepository;
+    private final ProductServiceClient productServiceClient;
+    private final UserServiceClient userServiceClient;
     private final CartItemRepository cartItemRepository;
 
     public boolean addToCart(String userId, CartItemRequest cartItemRequest) {
-//        Optional<Product> productOp = productRepository.findById(cartItemRequest.getProductId());
-//        if(productOp.isEmpty()){
-//            return false;
-//        }
-//        Product product = productOp.get();
-//        if(product.getStockQuantity() < cartItemRequest.getQuantity()){
-//            return false;
-//        }
-//        Optional<User> userOp = userRepository.findById(Long.parseLong(userId));
-//        if(userOp.isEmpty()){
-//            return false;
-//        }
-//        User user = userOp.get();
+        //fetch product details from product service
+        ProductResponse productResponse = productServiceClient.getProduct(String.valueOf(cartItemRequest.getProductId()));
+        if(productResponse == null || productResponse.getStockQuantity() < cartItemRequest.getQuantity()){
+            return false;
+        }
+
+        // fetch user details from user service
+        UserResponse userResponse = userServiceClient.getUser(userId);
+        if(userResponse == null){
+            return false;
+        }
 
         CartItem existingCartItem = cartItemRepository.findByProductIdAndUserId(cartItemRequest.getProductId(), Long.valueOf(userId));
         if (existingCartItem != null) {
@@ -52,9 +54,9 @@ public class CartItemService {
     }
 
     public boolean deleteItemFromCart(Long userId, Long productId) {
-//        Optional<Product> productOp = productRepository.findById(productId);
-//        Optional<User> userOp = userRepository.findById(Long.parseLong(userId));
-        CartItem cartItem = cartItemRepository.findByProductIdAndUserId(productId, Long.valueOf(userId));
+        ProductResponse productOp = productServiceClient.getProduct(String.valueOf(productId));
+        UserResponse userOp = userServiceClient.getUser(String.valueOf(userId));
+        CartItem cartItem = cartItemRepository.findByProductIdAndUserId(productId, userId);
         if(cartItem != null) {
             cartItemRepository.deleteByUserIdAndProductId(userId, productId);
             return true;
