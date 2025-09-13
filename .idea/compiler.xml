@@ -7,9 +7,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="EurekaServer" />
+        <module name="eureka" />
         <module name="configserver" />
       </profile>
-      <profile name="Annotation profile for demo-config" enabled="true">
+      <profile name="Annotation profile for product" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -17,18 +19,37 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar" />
         </processorPath>
         <module name="product" />
-        <module name="user" />
+        <module name="provider" />
+        <module name="consumer" />
         <module name="democonfig" />
         <module name="order" />
       </profile>
+      <profile name="Annotation profile for user" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar" />
+        </processorPath>
+        <module name="user" />
+      </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="eureka (1)" target="21" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="EurekaServer" options="-parameters" />
       <module name="configserver" options="-parameters" />
+      <module name="consumer" options="-parameters" />
       <module name="democonfig" options="-parameters" />
+      <module name="eureka" options="-parameters" />
+      <module name="eureka (1)" options="-parameters" />
       <module name="order" options="-parameters" />
       <module name="product" options="-parameters" />
+      <module name="provider" options="-parameters" />
       <module name="user" options="-parameters" />
     </option>
   </component>
