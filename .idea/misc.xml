@@ -8,13 +8,11 @@
         <option value="$PROJECT_DIR$/product/pom.xml" />
         <option value="$PROJECT_DIR$/order/pom.xml" />
         <option value="$PROJECT_DIR$/additional/configMagement/configserver/pom.xml" />
-        <option value="$PROJECT_DIR$/additional/configMagement/democonfig/pom.xml" />
-        <option value="$PROJECT_DIR$/additional/interservice/consumer/pom.xml" />
-        <option value="$PROJECT_DIR$/additional/interservice/eureka/pom.xml" />
         <option value="$PROJECT_DIR$/additional/interservice/product/pom.xml" />
-        <option value="$PROJECT_DIR$/additional/interservice/provider/pom.xml" />
         <option value="$PROJECT_DIR$/eureka/pom.xml" />
         <option value="$PROJECT_DIR$/EurekaServer/pom.xml" />
+        <option value="$PROJECT_DIR$/ConfigServer/pom.xml" />
+        <option value="$PROJECT_DIR$/Gateway/pom.xml" />
       </list>
     </option>
   </component>
